@@ -11,7 +11,8 @@ export class Node {
         //Visited
         this.visited = false
 
-
+        //Parent node of this node
+        this.parent = null
 
     }
 }

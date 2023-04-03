@@ -2,6 +2,19 @@ import { Node } from "./node.js";
 import { Board } from "./board.js";
 
 class KnightGraph extends Node{
+    /**
+     * 
+     * @param {*} node
+     * KnightGraph constructor takes a node of the chess Board
+     * and returns a new instance of the node with the additional properties
+     * containing adjacent nodes/squares that are all possible moves that
+     * the knight can make
+     * 
+     * If either rank or file is negative or greater than 7,
+     * the constructor will return null instead of an adjacent node
+     * at that position
+     */
+
     constructor(node){
         super(node.file, node.rank)
 
