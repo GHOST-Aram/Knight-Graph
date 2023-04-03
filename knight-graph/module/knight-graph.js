@@ -1,7 +1,7 @@
 import { Node } from "./node.js";
 import { Board } from "./board.js";
 
-class KnightGraph extends Node{
+export class KnightGraph extends Node{
     /**
      * 
      * @param {*} node
@@ -54,9 +54,3 @@ class KnightGraph extends Node{
             return new Node (file, rank)
     }
 }
-
-const board = new Board()
-
-
-const nightGra  =  new KnightGraph(board.ranks[3][3])
-console.log(nightGra)

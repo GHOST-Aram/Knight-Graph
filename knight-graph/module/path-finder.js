@@ -1,4 +1,4 @@
-import {KnightGraph} from './module/knight-graph.js'
+import {KnightGraph} from './knight-graph.js'
 export class Finder {
 
     /**
@@ -19,20 +19,10 @@ export class Finder {
      * This function traces the path of the Knight from the start position to the
      * target square using BFS algorithm
      */
-    findPath(){
+    findPath(neighbors){
         //Set start node as visited
         this.start.visited = true
 
-        //Create a KnightGraph object
-        const graph = new KnightGraph(this.start)
-
-        //Create an array of all the adjacent nodes
-        const neighbors = [
-            graph.topTopLeft, graph.topTopRight,
-            graph.leftTopLeft, graph.leftBottomLeft,
-            graph.rightTopRight, graph.rightBottomRight,
-            graph.bottomBottomLeft, graph.bottomBottomRight
-        ]
 
         //Now we loop through the neighbors for our target square
         neighbors.forEach(node => {
