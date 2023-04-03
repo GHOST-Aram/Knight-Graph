@@ -38,6 +38,7 @@ export class Finder {
         neighbors = neighbors.filter(neighbor => {
             return neighbor !== null
         })
+        let targetFound = null
         //Now we loop through the neighbors looking for our target square
         neighbors.forEach(node => {
 
@@ -52,17 +53,23 @@ export class Finder {
 
            
             //If target is found in the graph
-            if(this.isFound(node)){
-                //Back track path from target to start
-                console.log(this.#backTrackPath(node))
-                return this.#backTrackPath(node)
-            }
+            if(this.isFound(node))
+                targetFound = node
         }
         })
 
+        if(targetFound !== null){
+            //Back track path from target to start
+            return this.#backTrackPath(targetFound)
+
+        } else{
+            neighbors.forEach(node => {this.findPath(node)})
+
+        }
+        
+
         // //Recursively trace the path until its found 
         // // starting from current node
-        // neighbors.forEach(node => {this.findPath(node)})
 
     }
 
