@@ -17,7 +17,7 @@ export class Board{
             while(file < 8) {//For every file
 
                 //Create a square node for each coordinate
-                let squareNode = new Node(file, rank)
+                let squareNode = new Node (file, rank)
 
                 //Push the new file squared node to rank Squares array
                 rankSquares.push(squareNode)
@@ -34,50 +34,19 @@ export class Board{
         }
     }
 
-    //Create night graph: Coonect all sqares on board to all possible knight moves of each
-    createKnightGraph(){
-        this.ranks.forEach(rank => {
-            rank.forEach(sqaureNode =>{
-
-                sqaureNode.topTopLeft = new Node((sqaureNode.file - 1), (sqaureNode.rank + 2))
-
-                sqaureNode.topTopRight = new Node((sqaureNode.file + 1), (sqaureNode.rank + 2))
-                
-                sqaureNode.leftTopLeft = new Node((sqaureNode.file - 2), (sqaureNode.rank + 1))
-
-                sqaureNode.leftBottomLeft = new Node((sqaureNode.file - 2), (sqaureNode.rank - 1))
-                
-                sqaureNode.bottomBottomLeft = new Node((sqaureNode.file + 1), (sqaureNode.rank - 2))
-
-                sqaureNode.bottomBottomRight = new Node((sqaureNode.file + 1), (sqaureNode.rank - 2))
-                
-                sqaureNode.rightBottomRight = new Node((sqaureNode.file + 2), (sqaureNode.rank - 1))
-
-                sqaureNode.rightTopRight = new Node((sqaureNode.file + 2), (sqaureNode.rank + 1))
-
-            })
-        });
-
-        return this.ranks
-    }
+    
 
     //Position Knight
     positionKnight(file, rank){
         this.ranks[file][rank].piece = 'Knight'
     }
 
-    //Create Node
-    #createNode(file, rank){
-        if((file < 0 || file > 7) || (rank < 0 || rank > 7))
-            return null
-        else
-            return new Node (file, rank)
-    }
+
 }
 
-const board = new Board()
+// const board = new Board()
 
-board.createKnightGraph()
-board.positionKnight(0,0)
+// board.createKnightGraph()
+// board.positionKnight(0,0)
 
-console.log(board.ranks[0][0])
+// console.log(board.ranks[0][0])
