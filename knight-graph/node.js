@@ -5,6 +5,11 @@ export class Node {
         this.rank = rank
         this.file = file
 
+        //Piece on this sqaure
+        this.piece = ''
+
+        //Visited
+        this.visited = false
         //Adjacent nodes: One square perpendicular-one square diagonal
 
         //square to the top-left diagonal of the upper-square

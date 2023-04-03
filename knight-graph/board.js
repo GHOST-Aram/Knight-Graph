@@ -60,10 +60,15 @@ export class Board{
 
         return this.ranks
     }
+
+    //Position Knight
+    positionKnight(file, rank){
+        this.ranks[file][rank].piece = 'Knight'
+    }
 }
-const board = new Board ()
 
-let knightGraph = board.createKnightGraph()
+const board = new Board()
 
-console.log(knightGraph)
+board.positionKnight(0,0)
 
+console.log(board.ranks[0][0])
