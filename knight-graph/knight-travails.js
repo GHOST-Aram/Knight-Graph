@@ -23,8 +23,7 @@ const pathFinder = new Finder(targetSquare)
 
 //Get path
 const path = pathFinder.findPath(startSqr)
-// console.log(pathFinder.compareNodes(targetSquare))
 
 
-// console.log(path)
+console.log(path)
 // neighbors.forEach(node => console.log(node))

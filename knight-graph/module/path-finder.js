@@ -50,14 +50,12 @@ export class Finder {
             //Mark node as visited
             node.visited = true
 
-            //Trace target square
-            const matchedNode = this.compareNodes(node, this.target)
-
+           
             //If target is found in the graph
-            if(matchedNode !== false){
+            if(this.isFound(node)){
                 //Back track path from target to start
-                const path = this.#backTrackPath(matchedNode)
-                // return path
+                console.log(this.#backTrackPath(node))
+                return this.#backTrackPath(node)
             }
         }
         })
@@ -72,10 +70,9 @@ export class Finder {
      * Check if a node properties are equal to target properties
      * REturn node if match is found otherwise return false
     */
-   compareNodes(node){
-       if(node.file === this.target.file && node.rank === this.target.rank)
-       return node
-       else return false
+   isFound(node){
+       return node.file === this.target.file && node.rank === this.target.rank
+      
     }
     
     
