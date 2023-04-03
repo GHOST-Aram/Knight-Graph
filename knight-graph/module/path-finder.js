@@ -1,4 +1,3 @@
-import {KnightGraph} from './knight-graph.js'
 export class Finder {
 
     /**
@@ -11,6 +10,10 @@ export class Finder {
      */
     constructor(start, target){
         this.start = start
+        
+        //Set start node as visited
+        this.start.visited = true
+
         this.target = target
     }
     /**
@@ -20,15 +23,13 @@ export class Finder {
      * target square using BFS algorithm
      */
     findPath(neighbors){
-        //Set start node as visited
-        this.start.visited = true
 
 
-        //Now we loop through the neighbors for our target square
+        //Now we loop through the neighbors looking for our target square
         neighbors.forEach(node => {
 
             // If node is not null
-            if(node){
+            if(!node.visited){
 
             //Assign parents to each node
             node.parent = this.start
