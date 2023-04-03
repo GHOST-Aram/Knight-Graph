@@ -1,3 +1,5 @@
+import {KnightGraph} from "./knight-graph.js";
+
 export class Finder {
 
     /**
@@ -20,6 +22,7 @@ export class Finder {
 
         //Set start node as visited
         start.visited = true
+
         //Create a KnightGraph object
         const graph = new KnightGraph(start)
 
@@ -48,46 +51,46 @@ export class Finder {
             node.visited = true
 
             //Trace target square
-            const matchedNode = this.#compareNodes(node, this.target)
+            const matchedNode = this.compareNodes(node, this.target)
 
             //If target is found in the graph
-            if(matchedNode){
+            if(matchedNode !== false){
                 //Back track path from target to start
-                const path = this.#backTrackPath(matchedNode, start)
-        
-                return path
+                const path = this.#backTrackPath(matchedNode)
+                // return path
             }
         }
         })
 
-        //Recursively trace the path until its found 
-        // starting from current node
-        neighbors.forEach(node => {this.findPath(node)})
+        // //Recursively trace the path until its found 
+        // // starting from current node
+        // neighbors.forEach(node => {this.findPath(node)})
 
     }
 
     /**
      * Check if a node properties are equal to target properties
      * REturn node if match is found otherwise return false
-     */
-    #compareNodes(node){
-        if(node.file === this.target.file && node.rank === this.target.rank)
-            return node
-        else return false
+    */
+   compareNodes(node){
+       if(node.file === this.target.file && node.rank === this.target.rank)
+       return node
+       else return false
     }
-
-
+    
+    
     /**
      * 
      * @param {*} node 
      * Traces path backward in reverse from node through parents
      * upto the start node 
      * Returns an array of coordinates og the path
-     */
-    #backTrackPath(node){
-        //Create array of cordinate and initialize it with start cordinates
-        const coordinates = [[this.file, this.rank]]
-
+    */
+   #backTrackPath(node){
+       
+       //Create array of cordinate and initialize it with start cordinates
+       const coordinates = []
+       
         //Path will be recorded backwards 
         let backwardCordinates = []
 
@@ -106,7 +109,7 @@ export class Finder {
         for(let i = backwardCordinates.length - 1; i >= 0; i--){
             coordinates.push(backwardCordinates[i])
         }
-
+        
         //Return array of coordinates
         return coordinates
     }

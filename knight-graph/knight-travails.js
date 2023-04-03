@@ -1,5 +1,4 @@
 import { Board } from "./module/board.js";
-import {KnightGraph} from "./module/knight-graph.js";
 import { Finder } from "./module/path-finder.js";
 //Find path from current position to target
 const board = new Board()
@@ -24,7 +23,8 @@ const pathFinder = new Finder(targetSquare)
 
 //Get path
 const path = pathFinder.findPath(startSqr)
+// console.log(pathFinder.compareNodes(targetSquare))
 
 
-// console.log()
+// console.log(path)
 // neighbors.forEach(node => console.log(node))
