@@ -34,7 +34,10 @@ export class Board{
         }
     }
 
-    
+    //Get square
+    getSquare(file, rank){
+        return this.ranks[file][rank]
+    }
 
     //Position Knight
     positionKnight(file, rank){
