@@ -1,30 +1,40 @@
 export class Finder {
 
     /**
-     * Start position of the knight
-     *  @param {*} start 
+     *  
      * 
      * The position on board at which the knight is supposed to move
      * @param {*} target 
      * 
      */
-    constructor(start, target){
-        this.start = start
-        
-        //Set start node as visited
-        this.start.visited = true
-
+    constructor(target){
         this.target = target
     }
     /**
      * 
-     *
-     * This function traces the path of the Knight from the start position to the
-     * target square using BFS algorithm
-     */
-    findPath(neighbors){
+    *
+    * This function traces the path of the Knight from the start position to the
+    * target square using BFS algorithm
+    */
+   findPath(start){
 
+        //Set start node as visited
+        start.visited = true
+        //Create a KnightGraph object
+        const graph = new KnightGraph(start)
 
+        //Create an array of all the adjacent nodes
+        let neighbors = [
+            graph.topTopLeft, graph.topTopRight,
+            graph.leftTopLeft, graph.leftBottomLeft,
+            graph.rightTopRight, graph.rightBottomRight,
+            graph.bottomBottomLeft, graph.bottomBottomRight
+        ]
+
+        //Eliminate null neighbors
+        neighbors = neighbors.filter(neighbor => {
+            return neighbor !== null
+        })
         //Now we loop through the neighbors looking for our target square
         neighbors.forEach(node => {
 
@@ -32,7 +42,7 @@ export class Finder {
             if(!node.visited){
 
             //Assign parents to each node
-            node.parent = this.start
+            node.parent = start
 
             //Mark node as visited
             node.visited = true
@@ -43,7 +53,7 @@ export class Finder {
             //If target is found in the graph
             if(matchedNode){
                 //Back track path from target to start
-                const path = this.#backTrackPath(matchedNode, this.start)
+                const path = this.#backTrackPath(matchedNode, start)
         
                 return path
             }
@@ -52,7 +62,7 @@ export class Finder {
 
         //Recursively trace the path until its found 
         // starting from current node
-        neighbors.forEach(node => {this.findPath(node, this.target)})
+        neighbors.forEach(node => {this.findPath(node)})
 
     }
 

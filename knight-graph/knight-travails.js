@@ -15,27 +15,15 @@ const targetSquare = board.getSquare(2,1)
 
 
 
- //Create a KnightGraph object
- const graph = new KnightGraph(startSqr)
+ 
 
- //Create an array of all the adjacent nodes
- let neighbors = [
-    graph.topTopLeft, graph.topTopRight,
-    graph.leftTopLeft, graph.leftBottomLeft,
-    graph.rightTopRight, graph.rightBottomRight,
-    graph.bottomBottomLeft, graph.bottomBottomRight
- ]
-
- //Eliminate null neighbors
- neighbors = neighbors.filter(neighbor => {
-    return neighbor !== null
- })
+ 
 
 //Create pathFinder
-const pathFinder = new Finder(startSqr, targetSquare)
+const pathFinder = new Finder(targetSquare)
 
 //Get path
-const path = pathFinder.findPath(neighbors)
+const path = pathFinder.findPath(startSqr)
 
 
 // console.log()
