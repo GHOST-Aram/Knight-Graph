@@ -65,10 +65,19 @@ export class Board{
     positionKnight(file, rank){
         this.ranks[file][rank].piece = 'Knight'
     }
+
+    //Create Node
+    #createNode(file, rank){
+        if((file < 0 || file > 7) || (rank < 0 || rank > 7))
+            return null
+        else
+            return new Node (file, rank)
+    }
 }
 
 const board = new Board()
 
+board.createKnightGraph()
 board.positionKnight(0,0)
 
 console.log(board.ranks[0][0])
