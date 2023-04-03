@@ -47,12 +47,12 @@ export class Finder {
             node.visited = true
 
             //Trace target square
-            const matchedNode = compareNodes(node, this.target)
+            const matchedNode = this.#compareNodes(node, this.target)
 
             //If target is found in the graph
             if(matchedNode){
                 //Back track path from target to start
-                const path = backTrackPath(matchedNode, this.start)
+                const path = this.#backTrackPath(matchedNode, this.start)
         
                 return path
             }
@@ -61,7 +61,7 @@ export class Finder {
 
         //Recursively trace the path until its found 
         // starting from current node
-        neighbors.forEach(node => {findPath(node, this.target)})
+        neighbors.forEach(node => {this.findPath(node, this.target)})
 
     }
 
@@ -69,7 +69,7 @@ export class Finder {
      * Check if a node properties are equal to target properties
      * REturn node if match is found otherwise return false
      */
-    compareNodes(node){
+    #compareNodes(node){
         if(node.file === this.target.file && node.rank === this.target.rank)
             return node
         else return false
@@ -83,7 +83,7 @@ export class Finder {
      * upto the start node 
      * Returns an array of coordinates og the path
      */
-    backTrackPath(node){
+    #backTrackPath(node){
         //Create array of cordinate and initialize it with start cordinates
         const coordinates = [[this.file, this.rank]]
 
