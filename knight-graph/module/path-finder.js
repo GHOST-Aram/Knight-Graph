@@ -26,40 +26,28 @@ export class Finder {
 
         //Create a KnightGraph object
         const graph = new KnightGraph(start)
-        console.log(graph)
-        //Create an array of all the adjacent nodes
-        let neighbors = [
-            graph.topTopLeft, graph.topTopRight,
-            graph.leftTopLeft, graph.leftBottomLeft,
-            graph.rightTopRight, graph.rightBottomRight,
-            graph.bottomBottomLeft, graph.bottomBottomRight
-        ]
-
-        //Eliminate null neighbors
-        neighbors = neighbors.filter(neighbor => {
-            return neighbor !== null
-        })
-        // console.log(neighbors)
+        
+        //get an array of all the adjacent nodes
+        const neighbors = graph.getNeighbors()
+        //keeps track of target if found
         let targetFound = null
+
         //Now we loop through the neighbors looking for our target square
-        neighbors.forEach(node => {
-
-            // If node is not null
-            if(!node.visited){
-
-            //Assign parents to each node
-            node.parent = start
-
-            //Mark node as visited
-            node.visited = true
-
+        neighbors.forEach(neighbor => {
             
-            
+            // If neighbor is not null
+            if(!neighbor.visited){
                 
-            //If target is found in the graph
-            if(this.isFound(node))
-                targetFound = node
-        }
+                //Assign parents to each neighbor
+                neighbor.parent = start
+                
+                //Mark neighbor as visited
+                neighbor.visited = true
+                
+                //If target is found in the graph
+                if(this.isFound(neighbor))
+                targetFound = neighbor
+            } 
         })
 
         if(targetFound !== null){
@@ -68,14 +56,11 @@ export class Finder {
 
         } 
         else{
-            //Recursively trace the path until its found 
+            // Recursively trace the path until its found 
             // starting from current node
-            // neighbors.forEach(node => {this.findPath(node)})
+            neighbors.forEach(node => {this.findPath(node)})
 
         }
-        
-
-
     }
 
     /**

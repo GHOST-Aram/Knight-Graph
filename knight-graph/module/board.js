@@ -47,9 +47,7 @@ export class Board{
 
 }
 
-// const board = new Board()
+const board = new Board()
 
 // board.createKnightGraph()
 // board.positionKnight(0,0)
-
-// console.log(board.ranks[0][0])

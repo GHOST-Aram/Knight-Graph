@@ -56,4 +56,18 @@ export class KnightGraph extends Node{
         else
             return new Node (file, rank)
     }
+    getNeighbors(){
+        //Create an array of all the adjacent nodes
+        let neighbors = [
+            this.topTopLeft, this.topTopRight,
+            this.leftTopLeft, this.leftBottomLeft,
+            this.rightTopRight, this.rightBottomRight,
+            this.bottomBottomLeft, this.bottomBottomRight
+        ]
+
+        //Eliminate null neighbors
+        return neighbors.filter(neighbor => {
+            return neighbor !== null
+        })
+    }
 }
