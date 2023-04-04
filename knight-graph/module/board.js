@@ -42,6 +42,35 @@ export class Board{
         return this.ranks[rank][file]
     }
 
+    // Get unvisited aquares
+    getUnvisitedSquare(file, rank){
+        // Get square
+        const square = this.getSquare(file, rank)
+
+        // Check if unvisited
+        if (square && square.visited === false){
+            // MArk as visited
+            this.markAsVisited(square)
+            // Return
+            return square
+        }
+
+        // Return null if square is visited or square is null
+        return null
+
+    }
+    // Mark as visited
+    markAsVisited(square){
+        this.ranks.forEach(
+            rank => rank.forEach(
+                node => {
+                if(node.rank === square.rank && node.file === square.file)
+                    node.visited = true
+
+            })
+        );
+        console.log(this.ranks)
+    }
     //Position Knight
     positionKnight(file, rank){
         if((file < 0 || file > 7) || (rank < 0 || rank > 7))

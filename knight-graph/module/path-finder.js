@@ -11,6 +11,8 @@ export class Finder {
      * @param {*} target 
      * 
      */
+
+
     constructor(target){
         this.target = target
     }
@@ -20,19 +22,22 @@ export class Finder {
     * This function traces the path of the Knight from the start position to the
     * target square using BFS algorithm
     */
-   findPath(start){
+    findPath(start){
+        //Mark start square as visited
+        start.visited = true
 
         //Instanciate queue
         const collection = new Queue()
 
         //Enqueue start
         collection.enqueue(start)
-
+        let round = 0
         //Search for target node in queue contents 
         while(!collection.isEmpty()){
-
+            
             //Dequeue nodes
             const currentSquare = collection.dequeue()
+            // console.log(currentSquare)
 
             /**
              * Check current square against target square
@@ -41,10 +46,6 @@ export class Finder {
             if(this.isTarget(currentSquare))
                 return this.#backTrackPath(currentSquare)
 
-            //If Current square not target square
-
-            //Mark current square as visited
-            currentSquare.visited = true
 
             //Create a KnightGraph of current square
             const graph = new KnightGraph(currentSquare)
@@ -58,9 +59,24 @@ export class Finder {
              */
             adjacentSquares.forEach(
                 square => {
-                    square.parent = currentSquare//Set parent
-                    collection.enqueue(square)//Add to queue
+                    if(!square.visited){
+                        square.parent = currentSquare//Set parent
+
+                        // Mark as visited
+                        square.visited = true
+
+                        
+                        //Add to queue    
+                        collection.enqueue(square)
+                        
+                    }
+                    
                 })
+                round ++
+                if(round === 1){
+                    // console.log(collection)
+                    break
+                }
             // Keep going until you find the target square
         }
     }

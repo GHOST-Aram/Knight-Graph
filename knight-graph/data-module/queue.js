@@ -22,6 +22,6 @@ export class Queue {
 
     // Check if collection contains any items
     isEmpty(){
-        return this.collection.length === 0
+        return this.collection.length <= 0
     }
 }
