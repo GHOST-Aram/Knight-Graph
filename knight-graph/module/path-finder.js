@@ -20,46 +20,37 @@ export class Finder {
     * target square using BFS algorithm
     */
    findPath(start){
-
-        //Set start node as visited
-        start.visited = true
-
-        //Create a KnightGraph object
-        const graph = new KnightGraph(start)
-        
-        //get an array of all the adjacent nodes
-        const neighbors = graph.getNeighbors()
-        //keeps track of target if found
-        let targetFound = null
-
-        //Now we loop through the neighbors looking for our target square
-        neighbors.forEach(neighbor => {
-            
-            // If neighbor is not null
-            if(!neighbor.visited){
-                
-                //Assign parents to each neighbor
-                neighbor.parent = start
-                
-                //Mark neighbor as visited
-                neighbor.visited = true
-                
-                //If target is found in the graph
-                if(this.isTarget(neighbor))
-                targetFound = neighbor
-            } 
-        })
-
-        if(targetFound !== null){
-            //Back track path from target to start
-            return this.#backTrackPath(targetFound)
-
-        } 
+        // Base case
+        if(this.isTarget(start))
+            return this.#backTrackPath(start)
         else{
-            // Recursively trace the path until its found 
-            // starting from current node
-            neighbors.forEach(node => {this.findPath(node)})
+            //Set start node as visited
+            start.visited = true
+    
+            //Create a KnightGraph object
+            const graph = new KnightGraph(start)
+            
+            //get an array of all the adjacent nodes
+            const neighbors = graph.getNeighbors()
+      
+            //Now we loop through the neighbors looking for our target square
+            neighbors.forEach(neighbor => {
+                
+                // If neighbor is not null
+                if(!neighbor.visited){
+                    
+                    //Assign parents to each neighbor
+                    neighbor.parent = start
+                    
+                    //Mark neighbor as visited
+                    neighbor.visited = true
 
+                    //Recursively find path
+                    return this.findPath(neighbor)
+                } 
+            })
+    
+            
         }
     }
 
