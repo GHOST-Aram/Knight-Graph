@@ -18,6 +18,9 @@ export class KnightGraph extends Node{
     constructor(node){
         super(node.file, node.rank)
 
+        //Visited
+        this.visited = true
+
         //Adjacent nodes: One square perpendicular-one square diagonal
 
         //squarex to the top-left diagonal of the upper-square

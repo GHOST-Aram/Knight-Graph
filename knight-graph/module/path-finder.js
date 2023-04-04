@@ -26,7 +26,7 @@ export class Finder {
 
         //Create a KnightGraph object
         const graph = new KnightGraph(start)
-        
+        console.log(graph)
         //Create an array of all the adjacent nodes
         let neighbors = [
             graph.topTopLeft, graph.topTopRight,
@@ -70,7 +70,7 @@ export class Finder {
         else{
             //Recursively trace the path until its found 
             // starting from current node
-            neighbors.forEach(node => {this.findPath(node)})
+            // neighbors.forEach(node => {this.findPath(node)})
 
         }
         
