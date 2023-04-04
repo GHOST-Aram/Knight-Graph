@@ -10,7 +10,7 @@ board.positionKnight(0, 0)
 const startSqr = board.getSquare(0, 0)
 
 //Get targetSquare
-const targetSquare = board.getSquare(2, 1)
+const targetSquare = board.getSquare(1, 2)
 
 
 

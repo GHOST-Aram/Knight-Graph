@@ -36,12 +36,12 @@ export class Board{
 
     //Get square
     getSquare(file, rank){
-        return this.ranks[file][rank]
+        return this.ranks[rank][file]
     }
 
     //Position Knight
     positionKnight(file, rank){
-        this.ranks[file][rank].piece = 'Knight'
+        this.ranks[rank][file].piece = 'Knight'
     }
 
 
@@ -51,3 +51,4 @@ const board = new Board()
 
 // board.createKnightGraph()
 // board.positionKnight(0,0)
+console.log(board.getSquare(2, 7))
