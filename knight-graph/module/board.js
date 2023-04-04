@@ -44,6 +44,8 @@ export class Board{
 
     //Position Knight
     positionKnight(file, rank){
+        if((file < 0 || file > 7) || (rank < 0 || rank > 7))
+            throw `IllegalMove: square ${[file, rank]} is not in the board`
         this.ranks[rank][file].piece = 'Knight'
     }
 
