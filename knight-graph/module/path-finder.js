@@ -33,7 +33,8 @@ export class Finder {
             //get an array of all the adjacent nodes
             const neighbors = graph.getNeighbors()
       
-            //Now we loop through the neighbors looking for our target square
+            //Now we loop through the neighbors looking 
+            // for our target square
             neighbors.forEach(neighbor => {
                 
                 // If neighbor is not null
@@ -44,13 +45,12 @@ export class Finder {
                     
                     //Mark neighbor as visited
                     neighbor.visited = true
+                    
 
                     //Recursively find path
                     return this.findPath(neighbor)
-                } 
+                }
             })
-    
-            
         }
     }
 
