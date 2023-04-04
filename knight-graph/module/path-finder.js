@@ -19,41 +19,47 @@ export class Finder {
     * target square using BFS algorithm
     */
    findPath(start){
-        // Base case
-        if(this.isTarget(start))
-            return this.#backTrackPath(start)
-        else{
-            //Set start node as visited
-            start.visited = true
-    
-            //Create a KnightGraph object
-            const graph = new KnightGraph(start)
-            
-            //get an array of all the adjacent nodes
-            const neighbors = graph.getNeighbors()
 
-            //Now we loop through the neighbors looking 
-            // for our target square
-            let path = []
-            neighbors.forEach(neighbor => {
-                
-                // If neighbor is not null
-                if(!neighbor.visited){
-                    
-                    //Assign parents to each neighbor
-                    neighbor.parent = start
-                    
-                    //Mark neighbor as visited
-                    neighbor.visited = true
-                    
-                    if(this.isTarget(neighbor))
-                        path = this.#backTrackPath(neighbor)
+        //Instanciate queue
+        const collection = new Queue()
 
-                    //Recursively find path
-                    // return this.findPath(neighbor)
-                }
-            })
-            return path
+        //Enqueue start
+        collection.enqueue(start)
+
+        //Search for target node in queue contents 
+        while(!collection.isEmpty()){
+
+            //Dequeue nodes
+            const currentSquare = collection.dequeue()
+
+            /**
+             * Check current square against target square
+             * If match is found, return path
+             */
+            if(this.isTarget(currentSquare))
+                return this.#backTrackPath(currentSquare)
+
+            //If Current square not target square
+
+            //Mark current square as visited
+            currentSquare.visited = true
+
+            //Create a KnightGraph of current square
+            const graph = new KnightGraph(currentSquare)
+
+            // Get adjacent squares that are possible knights next moves
+            const adjacentSquares = graph.getNeighbors()
+
+            /**
+             * Set Currrent square as parent square for all adjacent squares
+             * and enqueue all adjacent squares 
+             */
+            adjacentSquares.forEach(
+                square => {
+                    square.parent = currentSquare//Set parent
+                    collection.enqueue(square)//Add to queue
+                })
+            // Keep going until you find the target square
         }
     }
 
