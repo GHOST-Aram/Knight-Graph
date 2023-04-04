@@ -11,6 +11,7 @@ export class Finder {
      */
     constructor(target){
         this.target = target
+        this.count = 0
     }
     /**
      * 
@@ -25,7 +26,7 @@ export class Finder {
 
         //Create a KnightGraph object
         const graph = new KnightGraph(start)
-
+        
         //Create an array of all the adjacent nodes
         let neighbors = [
             graph.topTopLeft, graph.topTopRight,
@@ -38,6 +39,7 @@ export class Finder {
         neighbors = neighbors.filter(neighbor => {
             return neighbor !== null
         })
+        // console.log(neighbors)
         let targetFound = null
         //Now we loop through the neighbors looking for our target square
         neighbors.forEach(node => {
@@ -51,7 +53,9 @@ export class Finder {
             //Mark node as visited
             node.visited = true
 
-           
+            
+            
+                
             //If target is found in the graph
             if(this.isFound(node))
                 targetFound = node
@@ -62,14 +66,15 @@ export class Finder {
             //Back track path from target to start
             return this.#backTrackPath(targetFound)
 
-        } else{
+        } 
+        else{
+            //Recursively trace the path until its found 
+            // starting from current node
             neighbors.forEach(node => {this.findPath(node)})
 
         }
         
 
-        // //Recursively trace the path until its found 
-        // // starting from current node
 
     }
 

@@ -33,7 +33,7 @@ export class KnightGraph extends Node{
         this.leftBottomLeft = this.#createNode((this.file - 2), (this.rank - 1))
         
         //squarex to the bottom-left diagonal of the bottom-square
-        this.bottomBottomLeft = this.#createNode((this.file + 1), (this.rank - 2))
+        this.bottomBottomLeft = this.#createNode((this.file - 1), (this.rank - 2))
 
         //Squarex to the bottom-right diagonal of the bottom-square
         this.bottomBottomRight = this.#createNode((this.file + 1), (this.rank - 2))

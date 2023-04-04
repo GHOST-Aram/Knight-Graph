@@ -4,13 +4,13 @@ import { Finder } from "./module/path-finder.js";
 const board = new Board()
 
 //Position knight
-board.positionKnight(0,0)
+board.positionKnight(3, 3)
 
 //Get square with knight
-const startSqr = board.getSquare(0, 0)
+const startSqr = board.getSquare(3, 3)
 
 //Get targetSquare
-const targetSquare = board.getSquare(2,1)
+const targetSquare = board.getSquare(0, 0)
 
 
 
