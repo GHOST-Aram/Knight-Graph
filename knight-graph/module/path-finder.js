@@ -34,8 +34,8 @@ export class Finder {
 
             //Now we loop through the neighbors looking 
             // for our target square
+            let path = []
             neighbors.forEach(neighbor => {
-                console.log(neighbors)
                 
                 // If neighbor is not null
                 if(!neighbor.visited){
@@ -46,11 +46,14 @@ export class Finder {
                     //Mark neighbor as visited
                     neighbor.visited = true
                     
+                    if(this.isTarget(neighbor))
+                        path = this.#backTrackPath(neighbor)
 
                     //Recursively find path
-                    return this.findPath(neighbor)
+                    // return this.findPath(neighbor)
                 }
             })
+            return path
         }
     }
 

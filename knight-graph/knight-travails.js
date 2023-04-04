@@ -25,5 +25,5 @@ const pathFinder = new Finder(targetSquare)
 const path = pathFinder.findPath(startSqr)
 
 
-// console.log(path)
+console.log(path)
 // neighbors.forEach(node => console.log(node))

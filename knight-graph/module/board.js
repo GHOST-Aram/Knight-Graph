@@ -56,4 +56,4 @@ const board = new Board()
 
 // board.createKnightGraph()
 // board.positionKnight(0,0)
-console.log(board.getSquare(2, 7))
+// console.log(board.getSquare(2, 7))
