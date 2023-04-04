@@ -36,6 +36,12 @@ export class Board{
 
     //Get square
     getSquare(file, rank){
+<<<<<<< Updated upstream
+=======
+        //Return null if coordinate is not in board
+        if((file < 0 || file > 7) || (rank < 0 || rank > 7))
+            return null
+>>>>>>> Stashed changes
         return this.ranks[rank][file]
     }
 
