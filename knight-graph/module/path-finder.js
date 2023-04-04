@@ -85,25 +85,16 @@ export class Finder {
        //Create array of cordinate and initialize it with start cordinates
        const coordinates = []
        
-        //Path will be recorded backwards 
-        let backwardCordinates = []
-
         //
         let current = node
         do{
             //Push cordinates into array
-            backwardCordinates.push([current.file, current.rank])
+            coordinates.unshift([current.file, current.rank])
 
             //Advance backwards
             current = current.parent
         }while(current !== null && current.visited)
 
-
-        //Reverse the array and add its element to cordinates array
-        for(let i = backwardCordinates.length - 1; i >= 0; i--){
-            coordinates.push(backwardCordinates[i])
-        }
-        
         //Return array of coordinates
         return coordinates
     }
