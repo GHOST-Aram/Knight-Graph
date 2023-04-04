@@ -45,7 +45,7 @@ export class Finder {
                 neighbor.visited = true
                 
                 //If target is found in the graph
-                if(this.isFound(neighbor))
+                if(this.isTarget(neighbor))
                 targetFound = neighbor
             } 
         })
@@ -67,7 +67,7 @@ export class Finder {
      * Check if a node properties are equal to target properties
      * REturn node if match is found otherwise return false
     */
-   isFound(node){
+   isTarget(node){
        return node.file === this.target.file && node.rank === this.target.rank
       
     }
