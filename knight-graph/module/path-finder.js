@@ -1,4 +1,6 @@
 import {KnightGraph} from "./knight-graph.js";
+import { Queue } from "../data-module/queue.js";
+
 
 export class Finder {
 
