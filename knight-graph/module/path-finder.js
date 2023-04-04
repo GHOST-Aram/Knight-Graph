@@ -1,9 +1,10 @@
-import {KnightGraph} from "./knight-graph.js";
 import { Queue } from "../data-module/queue.js";
+import { Board } from "./board.js";
 
 
 export class Finder {
 
+    board = new Board()
     /**
      *  
      * 
@@ -24,7 +25,7 @@ export class Finder {
     */
     findPath(start){
         //Mark start square as visited
-        start.visited = true
+        // start.visited = true
 
         //Instanciate queue
         const collection = new Queue()
@@ -48,7 +49,7 @@ export class Finder {
 
 
             //Create a KnightGraph of current square
-            const graph = new KnightGraph(currentSquare)
+            const graph = this.board.createKnightGraph(currentSquare)
 
             // Get adjacent squares that are possible knights next moves
             const adjacentSquares = graph.getNeighbors()
@@ -59,22 +60,19 @@ export class Finder {
              */
             adjacentSquares.forEach(
                 square => {
-                    if(!square.visited){
+                    
                         square.parent = currentSquare//Set parent
-
-                        // Mark as visited
-                        square.visited = true
 
                         
                         //Add to queue    
                         collection.enqueue(square)
                         
-                    }
                     
-                })
+                        
+                    })
+                    console.log(adjacentSquares)
                 round ++
-                if(round === 1){
-                    // console.log(collection)
+                if(round === 2){
                     break
                 }
             // Keep going until you find the target square

@@ -1,3 +1,4 @@
+import { KnightGraph } from "./knight-graph.js"
 import { Node } from "./node.js"
 export class Board{
     constructor(){
@@ -34,6 +35,40 @@ export class Board{
         }
     }
 
+    createKnightGraph(node){
+
+        const graph = new KnightGraph()
+            
+        //Adjacent nodes: One square perpendicular-one square diagonal
+
+        //squarex to the top-left diagonal of the upper-square
+        graph.topTopLeft = this.getUnvisitedSquare((node.file - 1), (node.rank + 2))
+
+        //squarex to the top-right diagonal of the upper-square
+        graph.topTopRight = this.getUnvisitedSquare((node.file + 1), (node.rank + 2))
+        
+        //squarex to the top-left diagonal of the left-square
+        graph.leftTopLeft = this.getUnvisitedSquare((node.file - 2), (node.rank + 1))
+
+        //squarex to the bottom-left diagonal of the left-square
+        graph.leftBottomLeft = this.getUnvisitedSquare((node.file - 2), (node.rank - 1))
+        
+        //squarex to the bottom-left diagonal of the bottom-square
+        graph.bottomBottomLeft = this.getUnvisitedSquare((node.file - 1), (node.rank - 2))
+
+        //Squarex to the bottom-right diagonal of the bottom-square
+        graph.bottomBottomRight = this.getUnvisitedSquare((node.file + 1), (node.rank - 2))
+        
+        //Squarex to the bottom-right diagonal of the right-square
+        graph.rightBottomRight = this.getUnvisitedSquare((node.file + 2), (node.rank - 1))
+
+        //Squarex to the top-right diagonal of the right-square
+        graph.rightTopRight = this.getUnvisitedSquare((node.file + 2), (node.rank + 1))
+
+        
+        return graph
+    }
+
     //Get square
     getSquare(file, rank){
         //Return null if coordinate is not in board
@@ -49,18 +84,18 @@ export class Board{
 
         // Check if unvisited
         if (square && square.visited === false){
-            // MArk as visited
-            this.markAsVisited(square)
             // Return
             return square
         }
-
+        
+        this.markAsVisited(square)
         // Return null if square is visited or square is null
         return null
 
     }
     // Mark as visited
     markAsVisited(square){
+        if(square)
         this.ranks.forEach(
             rank => rank.forEach(
                 node => {
@@ -69,13 +104,15 @@ export class Board{
 
             })
         );
-        console.log(this.ranks)
     }
     //Position Knight
     positionKnight(file, rank){
         if((file < 0 || file > 7) || (rank < 0 || rank > 7))
             throw `IllegalMove: square ${[file, rank]} is not in the board`
         this.ranks[rank][file].piece = 'Knight'
+
+        // Mark as visited
+        this.markAsVisited(this.getSquare(file, rank))
     }
 
 
